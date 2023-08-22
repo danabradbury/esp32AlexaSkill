@@ -1,0 +1,19 @@
+{
+  "name": "esp32alexaskill",
+  "version": "1.0.0",
+  "description": "aws lambda code and infrastructure for alexa skill",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danabradbury/esp32alexaskill.git"
+  },
+  "author": "danabradbury",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danabradbury/esp32alexaskill/issues"
+  },
+  "homepage": "https://github.com/danabradbury/esp32alexaskill#readme"
+}

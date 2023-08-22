@@ -1,0 +1,42 @@
+service: alexa-skill-service
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+
+custom:
+  s3BucketName: my-bucket
+  lambdaRoleName: my-lambda-role
+
+resources:
+  Resources:
+    MyS3Bucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.s3BucketName}
+
+    AlexaSkillLambdaRole:
+      Type: AWS::IAM::Role
+      Properties:
+        RoleName: ${self:custom.lambdaRoleName}
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service: lambda.amazonaws.com
+              Action: sts:AssumeRole
+        Path: /
+        ManagedPolicyArns:
+          - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+
+    Esp32SkillLambdaFunction:
+      Type: AWS::Lambda::Function
+      Properties:
+        Code:
+          S3Bucket: ${self:custom.s3BucketName}
+          S3Key: esp32-skill-function.zip
+        Handler: index.handler
+        Role: !GetAtt AlexaSkillLambdaRole.Arn
+        Runtime: nodejs14.x
+    DependsOn: AlexaSkillLambdaRole
