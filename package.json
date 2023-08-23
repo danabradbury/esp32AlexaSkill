@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/danabradbury/esp32alexaskill/issues"
   },
-  "homepage": "https://github.com/danabradbury/esp32alexaskill#readme"
+  "homepage": "https://github.com/danabradbury/esp32alexaskill#readme",
+  "dependencies": {
+    "@aws-sdk/client-iot-data-plane": "^3.395.0"
+  }
 }
